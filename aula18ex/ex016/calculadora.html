@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora Online Web</title>
+    <style>
+        @charset "UTF-8";
+
+        *{
+            margin: 0px;
+            padding: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background-color: white;
+            height: 100vh;
+        }
+
+        header > h1{
+            text-align: center;
+            margin-top: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(19, 19, 19);
+            font-style: italic;
+        }
+
+        #calculadora{
+            background-color: black;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            padding: 15px;
+            border-radius: 15px;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.589);
+        }
+
+        #calculadora >h1{
+            color: white;
+            margin-bottom: 3px;
+
+        }
+
+        #resultado{
+            background-color: white;
+            text-align: right;
+            padding: 5px;
+            color: rgb(48, 48, 48);
+            margin-bottom: 5px;
+            border-radius: 3px;
+            font-size: 15px;
+            height: 20px;
+        }
+        
+        .botao{
+            width: 50px;
+            height: 50px;
+            background-color: rgb(31, 31, 31);
+            cursor: pointer;
+            font-size: 15px;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.151);
+        }
+        .botao:hover{
+            background-color: black;
+           border: 1px solid white;
+           font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>calculadora online</h1>
+    </header>
+   <div id="calculadora">
+    <h1>calculadora</h1>
+        <table>
+            <p id="resultado">
+        
+            </p>
+            <tr>
+                <td><button class="botao" onclick="clean()">C</button></td>
+                <td><button class="botao" onclick="back()"><</button></td>
+                <td><button class="botao" onclick="digit('/')">/</button></td>
+                <td><button class="botao" onclick="digit('*')">X</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" onclick="digit('7')">7</button></td>
+                <td><button class="botao" onclick="digit('8')">8</button></td>
+                <td><button class="botao" onclick="digit('9')">9</button></td>
+                <td><button class="botao" onclick="digit('-')">-</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" onclick="digit('4')">4</button></td>
+                <td><button class="botao" onclick="digit('5')">5</button></td>
+                <td><button class="botao" onclick="digit('6')">6</button></td>
+                <td><button class="botao" onclick="digit('+')">+</button></td>
+            </tr>
+            <tr>
+                <td><button class="botao" onclick="digit('1')">1</button></td>
+                <td><button class="botao" onclick="digit('2')">2</button></td>
+                <td><button class="botao" onclick="digit('3')">3</button></td>
+                <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular()">=</button></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button class="botao" onclick="digit('0')" style="width: 106px;">0</button></td>
+                <td><button onclick="digit('.')"class="botao">.</button></td>
+            </tr>
+        </table>
+   </div>
+    <script>
+        function digit(num){
+         var numero = document.getElementById('resultado').innerHTML;
+         document.getElementById('resultado').innerHTML = numero + num;
+        }
+        function clean() {
+            document.getElementById('resultado').innerHTML = "";
+        }
+        function back() {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1)
+
+        }
+
+        function calcular() {
+            var resultado = document.getElementById('resultado').innerHTML;
+            if (resultado !== '') {
+                document.getElementById('resultado').innerHTML = eval(resultado)
+            } else {
+               document.getElementById('resultado').innerHTML = "insira um número...";
+            }
+        }
+    </script>
+</body>
+</html>
