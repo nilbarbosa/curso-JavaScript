@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Número Aleatório</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, rgba(248, 103, 103, 0.366), rgba(83, 83, 255, 0.349));
+        }
+        #chute{
+            font-size: 20px;
+            background-color: rgb(108, 108, 255);
+            border-radius: 10px;
+            border: 1px solid rgb(95, 95, 95);
+        }
+
+        button{
+            font-size: 15px;
+            padding: 5px;
+            background-color: rgb(245, 245, 134);
+            border-radius: 8px;
+            border: 1px solid rgb(95, 95, 95);
+        }
+    </style>
+</head>
+<body>
+    <h1>Adivinhe o número de <strong>1</strong> a <strong>10</strong>:</h1>
+    <input type="number" name="chute" id="chute" max="10" min="1">
+    <button onclick="verificarChute()">Verificar</button>
+    <p id="resultado"></p>
+
+    <script>
+        var numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+        var tentativas = 0;
+
+        function verificarChute() {
+            var tentativaUsuario = parseInt(document.getElementById('chute').value);
+
+            if (!isNaN(tentativaUsuario)) {
+                tentativas++;
+
+                if (tentativaUsuario >= 1 && tentativaUsuario <= 10) {
+                    if (tentativaUsuario === numeroAleatorio) {
+                        document.getElementById('resultado').textContent = `Parabéns! Você acertou o número com ${tentativas} tentativa(s).`;
+                    } else {
+                        document.getElementById('resultado').textContent = 'Tente novamente.';
+                    }
+                } else {
+                    document.getElementById('resultado').textContent = 'Por favor, insira um número entre 1 e 10.';
+                }
+            } else {
+                document.getElementById('resultado').textContent = 'Por favor, insira um número válido.';
+            }
+        }
+    </script>
+</body>
+</html>
